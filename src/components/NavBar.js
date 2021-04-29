@@ -9,6 +9,7 @@ const StyledNavBar = styled.div`
   & {
     height: 22vh;
     margin-top: 0.5%;
+    border-bottom: 0.1px solid #505257;
   }
 
   nav {
@@ -41,6 +42,13 @@ const StyledNavBar = styled.div`
   .h1 {
     display: flex;
     flex-direction: column-reverse;
+    transition: 0.3s ease-out;
+  }
+
+  .h1:hover {
+    color: #505257;
+    transition: 0.3s ease-in;
+    cursor: pointer;
   }
 
   .links {
@@ -56,6 +64,12 @@ const StyledNavBar = styled.div`
     font-size: 3.5rem;
     color: #505257;
     margin: 2%;
+    transition: 0.4s ease-out;
+  }
+
+  .link--style:hover {
+    color: white;
+    transition: 0.4s ease-in;
   }
 `;
 
