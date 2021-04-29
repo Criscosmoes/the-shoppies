@@ -45,6 +45,10 @@ const StyledSearch = styled.div`
     height: 20%;
   }
 
+  form > * {
+    margin: 2%;
+  }
+
   .placeholder {
     height: 15%;
   }
@@ -67,6 +71,7 @@ const StyledSearch = styled.div`
     background: #95bf46;
     border: none;
     color: white;
+    padding: 1%;
   }
 `;
 

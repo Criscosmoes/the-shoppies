@@ -7,9 +7,18 @@ import MoviesList from "./MoviesList";
 
 const StyledMiddleSection = styled.div`
   & {
-    height: 90vh;
+    height: 700px;
     display: flex;
     justify-content: center;
+  }
+
+  div::-webkit-scrollbar {
+    width: 2rem;
+  }
+
+  div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
   }
 `;
 
