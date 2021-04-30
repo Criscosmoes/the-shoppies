@@ -12,10 +12,18 @@ import LoadingMovie from "./LoadingMovie";
 const StyledMoviesList = styled.div`
   & {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     width: 48%;
+  }
+
+  .movie--list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
     height: 100%;
     overflow-y: auto;
     margin: 0.5%;
@@ -25,23 +33,28 @@ const StyledMoviesList = styled.div`
     margin: 3%;
     text-align: center;
     cursor: pointer;
-    border: 4px solid white;
-    -moz-box-shadow: 10px 10px 50px black;
-    -webkit-box-shadow: 10px 10px 50px black;
-    box-shadow: 10px 10px 50px black;
     min-width: 80%;
     max-width: 80%;
     min-height: 200px;
     border-radius: 10px;
+    background: gray;
+  }
+
+  ul::-webkit-scrollbar {
+    width: 2rem;
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
   }
 `;
 
-const MoviesList = () => {
-  const [movieList, setMovieList] = useState([1, 2, 3]);
+const MoviesList = ({ movieList, fetchMovies }) => {
   const [loadingMovies, setLoadingMovies] = useState([1, 2, 3]);
 
   const renderedMovies = movieList.map((cur) => {
-    return <div className="movie"></div>;
+    return <li className="movie"></li>;
   });
 
   const renderedLoading = loadingMovies.map((cur) => {
@@ -49,23 +62,14 @@ const MoviesList = () => {
   });
 
   useEffect(async () => {
-    async function fetchMoviesList() {
-      try {
-        const response = await axios.get(
-          "http://www.omdbapi.com/?s=avengers&apikey=10532f9"
-        );
-
-        setMovieList(response.data.Search);
-
-        console.log(response);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    /* fetchMoviesList(); */
+    /* fetchMovies(); */
   }, []);
 
-  return <StyledMoviesList>{renderedMovies}</StyledMoviesList>;
+  return (
+    <StyledMoviesList>
+      <ul className="movie--list">{renderedMovies}</ul>
+    </StyledMoviesList>
+  );
 };
 
 const mapStateToProps = (state) => {

@@ -11,15 +11,6 @@ const StyledMiddleSection = styled.div`
     display: flex;
     justify-content: center;
   }
-
-  div::-webkit-scrollbar {
-    width: 2rem;
-  }
-
-  div::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: white;
-  }
 `;
 
 const MiddleSection = () => {

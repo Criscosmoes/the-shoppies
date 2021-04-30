@@ -9,7 +9,8 @@ const StyledLoadingMovie = styled.div`
     background: linear-gradient(-130deg, #606060, #d8d8d8, #606060);
     position: relative;
     background-size: 400% 400%;
-    animation: change 4s ease-in infinite;
+    animation: change 3s ease-in infinite;
+    margin: 3%;
   }
 
   @keyframes change {

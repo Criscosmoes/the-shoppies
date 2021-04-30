@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { connect } from "react-redux";
+
 const StyledSearch = styled.div`
   & {
     display: flex;
@@ -42,15 +44,10 @@ const StyledSearch = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    height: 20%;
+    height: 35%;
   }
-
-  form > * {
-    margin: 2%;
-  }
-
   .placeholder {
-    height: 15%;
+    height: 5%;
   }
 
   input {
@@ -75,7 +72,7 @@ const StyledSearch = styled.div`
   }
 `;
 
-const Search = () => {
+const Search = ({ userInput }) => {
   return (
     <StyledSearch>
       <div className="title">
@@ -93,4 +90,10 @@ const Search = () => {
   );
 };
 
-export default Search;
+const mapStateToProps = (state) => {
+  return {
+    userInput: state.userInput,
+  };
+};
+
+export default connect(mapStateToProps, {})(Search);
