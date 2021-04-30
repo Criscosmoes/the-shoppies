@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import axios from "axios";
+import "../_movieList.scss";
 
 // helper functions
 import { fetchMovies } from "../actions";
@@ -37,7 +38,6 @@ const StyledMoviesList = styled.div`
     max-width: 80%;
     min-height: 200px;
     border-radius: 10px;
-    background: gray;
   }
 
   ul::-webkit-scrollbar {
