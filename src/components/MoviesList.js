@@ -100,14 +100,12 @@ const StyledMoviesList = styled.div`
 
 const MoviesList = ({
   movieList,
-  fetchMovies,
   isLoading,
   addMovie,
   removeMovie,
   changeButtonText,
 }) => {
   const [loadingMovies, setLoadingMovies] = useState([1, 2, 3]);
-  const [isClicked, setIsClicked] = useState(false);
 
   const onButtonClick = (movie) => {
     if (movie.Type) {
@@ -117,6 +115,7 @@ const MoviesList = ({
       removeMovie(movie);
     }
 
+    // change the button text/style if someone has tried to remove/add a movie
     changeButtonText(movie);
   };
 

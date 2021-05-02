@@ -1,13 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const StyledList = styled.div`
-  .movie {
-    margin: 3%;
+  & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > * {
+    margin: 1%;
+  }
+
+  .main--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .main--container > * {
+    margin: 1% 0%;
+  }
+
+  h1 {
     text-align: center;
-    min-width: 80%;
-    max-width: 80%;
+    font-size: 9rem;
+    color: white;
+  }
+
+  .movie {
+    margin: 2%;
+    text-align: center;
+    width: 35%;
     min-height: 190px;
     max-height: 190px;
     border-radius: 10px;
@@ -19,41 +47,31 @@ const StyledList = styled.div`
     font-size: 2.4rem;
   }
 
-  ul::-webkit-scrollbar {
-    width: 2rem;
-  }
-
-  ul::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: white;
+  .placeholder {
+    width: 25%;
   }
 
   // each movie
 
   img {
-    min-width: 25%;
-    max-width: 25%;
+    width: 28%;
   }
 
   .information {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 25%;
+    width: 30%;
     height: 150px;
     color: white;
-  }
-
-  .placeholder {
-    width: 30%;
   }
 
   button {
     border-radius: 10px;
     padding: 3%;
     color: white;
-    background: #95bf46;
+    background: red;
     width: 80%;
     font-family: "Orelega One", cursive;
     font-size: 1.7rem;
@@ -62,8 +80,33 @@ const StyledList = styled.div`
     transition: 0.2s ease-out;
   }
 
-  .remove {
-    background: red;
+  .nomiations {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .error {
+    font-size: 8rem;
+    color: white;
+    text-align: center;
+  }
+
+  span {
+    color: white;
+    font-size: 4rem;
+  }
+
+  .link {
+    color: white;
+    text-decoration: underline;
+    transition: 0.2s ease-out;
+  }
+
+  .link:hover {
+    color: #95bf46;
     transition: 0.2s ease-in;
   }
 `;
@@ -85,7 +128,23 @@ const MyList = ({ nominationList }) => {
 
   return (
     <StyledList>
-      {renderedNominations ? renderedNominations : <div>No movies</div>}
+      {renderedNominations.length >= 1 ? (
+        <div className="main--container">
+          <h1>Nominations.</h1>
+
+          <div className="nomiations">{renderedNominations}</div>
+        </div>
+      ) : (
+        <div className="error">
+          No nomiations. <br></br>{" "}
+          <span>
+            Please add films by searching{" "}
+            <Link className="link" to="/">
+              Here
+            </Link>
+          </span>
+        </div>
+      )}
     </StyledList>
   );
 };

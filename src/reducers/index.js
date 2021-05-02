@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
       };
     case "REMOVE_MOVIE":
       const filteredFilms = state.nominationList.filter((cur) => {
-        return cur.Title != action.payload.Title;
+        return action.payload.imdbID !== cur.imdbID;
       });
 
       return {
