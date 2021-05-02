@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
+// helper funcs
+
+import { onInputChange, fetchMovies, resetInput } from "../actions";
+
 const StyledSearch = styled.div`
   & {
     display: flex;
@@ -55,7 +59,7 @@ const StyledSearch = styled.div`
     padding: 1%;
     border-radius: 10px;
     outline: none;
-    font-family: "Ramaraja", serif;
+    font-family: "Orelega One", cursive;
     font-size: 2.8rem;
     border: 4px solid #505257;
   }
@@ -63,16 +67,23 @@ const StyledSearch = styled.div`
   button {
     width: 40%;
     border-radius: 10px;
-    font-family: "Ramaraja", serif;
+    font-family: "Orelega One", cursive;
     font-size: 3rem;
     background: #95bf46;
+    cursor: pointer;
     border: none;
     color: white;
     padding: 1%;
   }
 `;
 
-const Search = ({ userInput }) => {
+const Search = ({ userInput, onInputChange, fetchMovies, resetInput }) => {
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    fetchMovies(userInput);
+    resetInput();
+  };
+
   return (
     <StyledSearch>
       <div className="title">
@@ -81,8 +92,13 @@ const Search = ({ userInput }) => {
         </h1>
         <h2>Search 5 of your favorite all time movies.</h2>
       </div>
-      <form>
-        <input type="text" placeholder="Search movies..." />
+      <form onSubmit={onFormSubmit}>
+        <input
+          onChange={onInputChange}
+          value={userInput}
+          type="text"
+          placeholder="Search movies..."
+        />
         <button type="submit">Search</button>
       </form>
       <div className="placeholder"></div>
@@ -96,4 +112,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Search);
+export default connect(mapStateToProps, {
+  onInputChange,
+  fetchMovies,
+  resetInput,
+})(Search);

@@ -1,21 +1,39 @@
 import axios from "axios";
 
-export const fetchMovies = () => async (dispatch) => {
+export const fetchMovies = (input) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://www.omdbapi.com/?s=avengers&apikey=10532f9"
-    );
+    dispatch({ type: "IS_LOADING", payload: true });
 
-    dispatch({ type: "FETCH_MOVIES", payload: response.data.Search });
-    console.log(response);
+    setTimeout(async () => {
+      const response = await axios.get(
+        `http://www.omdbapi.com/?s=${input}&apikey=10532f9`
+      );
+
+      dispatch({ type: "FETCH_MOVIES", payload: response.data.Search });
+      dispatch({ type: "IS_LOADING", payload: false });
+    }, 2000);
   } catch (e) {
     console.log(e);
   }
+};
+
+export const addMovie = (movie) => {
+  return {
+    type: "ADD_NOMINATION",
+    payload: movie,
+  };
 };
 
 export const onInputChange = (e) => {
   return {
     type: "ON_INPUT_CHANGE",
     payload: e.target.value,
+  };
+};
+
+export const resetInput = () => {
+  return {
+    type: "RESET_INPUT",
+    payload: "",
   };
 };

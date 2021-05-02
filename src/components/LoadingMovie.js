@@ -4,12 +4,12 @@ import styled from "styled-components";
 const StyledLoadingMovie = styled.div`
   & {
     width: 80%;
-    height: 200px;
+    height: 190px;
     border-radius: 10px;
     background: linear-gradient(-130deg, #606060, #d8d8d8, #606060);
     position: relative;
     background-size: 400% 400%;
-    animation: change 3s ease-in infinite;
+    animation: change 2s ease-in infinite;
     margin: 3%;
   }
 
