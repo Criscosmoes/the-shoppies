@@ -24,6 +24,20 @@ export const addMovie = (movie) => {
   };
 };
 
+export const changeButtonText = (movie) => {
+  return {
+    type: "CHANGE_TEXT",
+    payload: movie,
+  };
+};
+
+export const removeMovie = (movie) => {
+  return {
+    type: "REMOVE_MOVIE",
+    payload: movie,
+  };
+};
+
 export const onInputChange = (e) => {
   return {
     type: "ON_INPUT_CHANGE",

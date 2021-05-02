@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 // helper functions
-import { fetchMovies } from "../actions";
+import {
+  fetchMovies,
+  addMovie,
+  removeMovie,
+  changeButtonText,
+} from "../actions";
 
 // components
 import LoadingMovie from "./LoadingMovie";
@@ -31,7 +36,6 @@ const StyledMoviesList = styled.div`
   .movie {
     margin: 3%;
     text-align: center;
-    cursor: pointer;
     min-width: 80%;
     max-width: 80%;
     min-height: 190px;
@@ -39,9 +43,10 @@ const StyledMoviesList = styled.div`
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
+    border: 3px solid white;
     align-items: center;
-    background: #303030;
-    font-size: 2rem;
+    background: #202020;
+    font-size: 2.4rem;
   }
 
   ul::-webkit-scrollbar {
@@ -76,7 +81,7 @@ const StyledMoviesList = styled.div`
 
   button {
     border-radius: 10px;
-    padding: 2%;
+    padding: 3%;
     color: white;
     background: #95bf46;
     width: 80%;
@@ -84,13 +89,42 @@ const StyledMoviesList = styled.div`
     font-size: 1.7rem;
     cursor: pointer;
     border: none;
+    transition: 0.2s ease-out;
+  }
+
+  .remove {
+    background: red;
+    transition: 0.2s ease-in;
   }
 `;
 
-const MoviesList = ({ movieList, fetchMovies, isLoading }) => {
+const MoviesList = ({
+  movieList,
+  fetchMovies,
+  isLoading,
+  addMovie,
+  removeMovie,
+  changeButtonText,
+}) => {
   const [loadingMovies, setLoadingMovies] = useState([1, 2, 3]);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const onButtonClick = (movie) => {
+    if (movie.Type) {
+      // someone wants to add a movie
+      addMovie(movie);
+    } else {
+      removeMovie(movie);
+    }
+
+    changeButtonText(movie);
+  };
 
   const filteredMovies = movieList.filter((cur) => cur.Poster !== "N/A");
+
+  if (filteredMovies.length > 1) {
+    filteredMovies.forEach((cur) => (cur.completed = false));
+  }
 
   const renderedMovies = filteredMovies.map((cur) => {
     return (
@@ -98,8 +132,13 @@ const MoviesList = ({ movieList, fetchMovies, isLoading }) => {
         <img src={cur.Poster} />
         <div className="information">
           <h2>{cur.Title}</h2>
-          <h3>{cur.Year}</h3>
-          <button>Nominate</button>
+          <h3>Release: {cur.Year}</h3>
+          <button
+            className={`${cur.Type ? "" : "remove"}`}
+            onClick={() => onButtonClick(cur)}
+          >
+            {cur.Type ? "Nominate" : "Remove"}
+          </button>
         </div>
         <div className="placeholder"></div>
       </li>
@@ -109,10 +148,6 @@ const MoviesList = ({ movieList, fetchMovies, isLoading }) => {
   const renderedLoading = loadingMovies.map((cur) => {
     return <LoadingMovie />;
   });
-
-  useEffect(async () => {
-    fetchMovies("avengers");
-  }, []);
 
   return (
     <StyledMoviesList>
@@ -130,4 +165,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchMovies })(MoviesList);
+export default connect(mapStateToProps, {
+  fetchMovies,
+  addMovie,
+  removeMovie,
+  changeButtonText,
+})(MoviesList);
