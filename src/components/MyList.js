@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { removeMovie, changeButtonText } from "../actions";
+
 const StyledList = styled.div`
   & {
     display: flex;
@@ -111,7 +113,12 @@ const StyledList = styled.div`
   }
 `;
 
-const MyList = ({ nominationList }) => {
+const MyList = ({ nominationList, removeMovie, changeButtonText }) => {
+  const onRemoveClick = (movie) => {
+    removeMovie(movie);
+    changeButtonText(movie);
+  };
+
   const renderedNominations = nominationList.map((cur) => {
     return (
       <li className="movie">
@@ -119,7 +126,7 @@ const MyList = ({ nominationList }) => {
         <div className="information">
           <h2>{cur.Title}</h2>
           <h3>Release: {cur.Year}</h3>
-          <button>Remove</button>
+          <button onClick={() => onRemoveClick(cur)}>Remove</button>
         </div>
         <div className="placeholder"></div>
       </li>
@@ -155,4 +162,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(MyList);
+export default connect(mapStateToProps, { removeMovie, changeButtonText })(
+  MyList
+);
