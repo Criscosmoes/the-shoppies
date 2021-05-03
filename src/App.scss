@@ -157,3 +157,9 @@ body {
 .main--container > * {
   width: 85%;
 }
+
+@media (max-width: 400px) {
+  .main--container > * {
+    width: 90%;
+  }
+}

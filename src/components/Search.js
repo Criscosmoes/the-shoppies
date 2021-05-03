@@ -3,22 +3,19 @@ import styled from "styled-components";
 
 import { connect } from "react-redux";
 
+import MediaQuery from "react-responsive";
 // helper funcs
 
 import { onInputChange, fetchMovies, resetInput } from "../actions";
 
 const StyledSearch = styled.div`
   & {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    width: 49%;
     position: relative;
   }
 
   &:after {
     content: "";
-    background: #505257;
+    background: transparent;
     position: absolute;
     top: 0;
     right: 0;
@@ -29,6 +26,11 @@ const StyledSearch = styled.div`
   .title {
     text-align: center;
     color: white;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    margin: 0% 2%;
   }
 
   h1 {
@@ -75,6 +77,44 @@ const StyledSearch = styled.div`
     color: white;
     padding: 1%;
   }
+
+  // media queries
+
+  @media (max-width: 400px) {
+    &:after {
+      content: "";
+      background: transparent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 50%;
+      width: 1px;
+    }
+
+    .title > * {
+      margin: 3% 0%;
+    }
+
+    h1 {
+      font-size: 7rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 60%;
+    }
+
+    form > * {
+      margin: 4%;
+    }
+  }
 `;
 
 const Search = ({ userInput, onInputChange, fetchMovies, resetInput }) => {
@@ -86,22 +126,42 @@ const Search = ({ userInput, onInputChange, fetchMovies, resetInput }) => {
 
   return (
     <StyledSearch>
-      <div className="title">
-        <h1>
-          Nominate<br></br> amazing films.
-        </h1>
-        <h2>Search 5 of your favorite all time movies.</h2>
-      </div>
-      <form onSubmit={onFormSubmit}>
-        <input
-          onChange={onInputChange}
-          value={userInput}
-          type="text"
-          placeholder="Search movies..."
-        />
-        <button type="submit">Search</button>
-      </form>
-      <div className="placeholder"></div>
+      <MediaQuery maxWidth={400}>
+        <div className="title">
+          <h1>
+            Nominate<br></br> amazing films.
+          </h1>
+          <h2>Search 5 of your favorite all time movies.</h2>
+        </div>
+        <form onSubmit={onFormSubmit}>
+          <input
+            onChange={onInputChange}
+            value={userInput}
+            type="text"
+            placeholder="Search movies..."
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div className="placeholder"></div>
+      </MediaQuery>
+      <MediaQuery minWidth={1000}>
+        <div className="title">
+          <h1>
+            Nominate<br></br> amazing films.
+          </h1>
+          <h2>Search 5 of your favorite all time movies.</h2>
+        </div>
+        <form onSubmit={onFormSubmit}>
+          <input
+            onChange={onInputChange}
+            value={userInput}
+            type="text"
+            placeholder="Search movies..."
+          />
+          <button type="submit">Search</button>
+        </form>
+        <div className="placeholder"></div>
+      </MediaQuery>
     </StyledSearch>
   );
 };

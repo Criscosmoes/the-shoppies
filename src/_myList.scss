@@ -134,3 +134,14 @@ $total-items: 5;
     opacity: 1;
   }
 }
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  .movie {
+    width: 100%;
+    font-size: 2rem;
+  }
+}

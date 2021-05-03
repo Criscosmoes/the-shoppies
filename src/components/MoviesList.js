@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import ShopifyLogo from "../images/shopify-logo.png";
 
+import MediaQuery from "react-responsive";
+
 // helper functions
 import {
   fetchMovies,
@@ -214,6 +216,46 @@ const StyledMoviesList = styled.div`
     background: #edca1d;
     transition: 0.2s ease-in;
   }
+
+  @media (max-width: 400px) {
+    & {
+      width: 100%;
+    }
+
+    .movie {
+      min-height: 150px;
+      max-height: 150px;
+      min-width: 100%;
+    }
+
+    img {
+      min-width: 30%;
+      max-width: 30%;
+    }
+
+    .information {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      width: 32%;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 2%;
+      width: 100%;
+    }
+
+    a {
+      font-size: 1.2rem;
+      padding: 2%;
+    }
+
+    ul::-webkit-scrollbar {
+      width: 0rem;
+    }
+  }
 `;
 
 const MoviesList = ({
@@ -285,6 +327,33 @@ const MoviesList = ({
     );
   });
 
+  const renderedMoviesPhone = filteredMovies.map((cur) => {
+    return (
+      <li className="movie">
+        <img src={cur.Poster} />
+        <div className="information">
+          <h2>{cur.Title}</h2>
+          <h3>Release: {cur.Year}</h3>
+        </div>
+        <div className="buttons">
+          <button
+            className={`${cur.Type ? "" : "remove"}`}
+            onClick={() => onButtonClick(cur)}
+          >
+            {cur.Type ? "Nominate" : "Remove"}
+          </button>
+          <a
+            href={`https://www.imdb.com/title/${cur.imdbID}/`}
+            target="_blank"
+            className="imdb"
+          >
+            IMDb
+          </a>
+        </div>
+      </li>
+    );
+  });
+
   const renderedLoading = loadingMovies.map((cur) => {
     return <LoadingMovie />;
   });
@@ -301,26 +370,62 @@ const MoviesList = ({
     }
   };
 
+  const showListPhone = () => {
+    if (isLoading) {
+      return renderedLoading;
+    } else {
+      if (movieList.length > 0) {
+        return renderedMoviesPhone;
+      } else {
+        return <li className="error">No films found. Please search again!</li>;
+      }
+    }
+  };
+
   return (
     <StyledMoviesList>
-      <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
-      <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
-      <div className={`hidden ${isFull ? "centered" : ""}`}>
-        <div className="title">
-          <img className="logo" src={ShopifyLogo} />
+      <MediaQuery maxWidth={400}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>
+          {showListPhone()}
+        </ul>
+        <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
+        <div className={`hidden ${isFull ? "centered" : ""}`}>
+          <div className="title">
+            <img className="logo" src={ShopifyLogo} />
 
-          <div className="h1">
-            <h1>theshoppies.</h1>
+            <div className="h1">
+              <h1>theshoppies.</h1>
+            </div>
           </div>
+          <h2 className="congrats">Congratulations!</h2>
+          <p>
+            Your list is now full. To make any necessary edits, please visit{" "}
+            <Link className="link" to="/mylist">
+              my list
+            </Link>
+          </p>
         </div>
-        <h2 className="congrats">Congratulations!</h2>
-        <p>
-          Your list is now full. To make any necessary edits, please visit{" "}
-          <Link className="link" to="/mylist">
-            my list
-          </Link>
-        </p>
-      </div>
+      </MediaQuery>
+      <MediaQuery minWidth={1000}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
+        <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
+        <div className={`hidden ${isFull ? "centered" : ""}`}>
+          <div className="title">
+            <img className="logo" src={ShopifyLogo} />
+
+            <div className="h1">
+              <h1>theshoppies.</h1>
+            </div>
+          </div>
+          <h2 className="congrats">Congratulations!</h2>
+          <p>
+            Your list is now full. To make any necessary edits, please visit{" "}
+            <Link className="link" to="/mylist">
+              my list
+            </Link>
+          </p>
+        </div>
+      </MediaQuery>
     </StyledMoviesList>
   );
 };
