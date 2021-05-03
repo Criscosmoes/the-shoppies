@@ -111,7 +111,7 @@ $total-items: 5;
 // Set delay per List Item
 @for $i from 1 through $total-items {
   .movie:nth-child(#{$i}) {
-    animation-delay: 0.25s * $i;
+    animation-delay: 0.21s * $i;
   }
 }
 

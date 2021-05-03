@@ -165,7 +165,7 @@ const StyledMoviesList = styled.div`
     align-items: center;
   }
 
-  .h1 {
+  h1 {
     font-size: 5rem;
   }
   .logo {
