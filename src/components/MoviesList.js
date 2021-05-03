@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import ShopifyLogo from "../images/shopify-logo.png";
 
 // helper functions
 import {
@@ -96,6 +98,74 @@ const StyledMoviesList = styled.div`
     background: red;
     transition: 0.2s ease-in;
   }
+
+  .hidden {
+    display: none;
+  }
+
+  .backdrop {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(3.5px);
+  }
+
+  // notification
+
+  .centered {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 40%;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1f202b;
+    color: white;
+    border: 3px solid white;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 0;
+  }
+
+  .centered > * {
+    margin: 3%;
+  }
+
+  .congrats {
+    font-size: 7rem;
+  }
+
+  p {
+    font-size: 3rem;
+  }
+
+  .link {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .h1 {
+    font-size: 5rem;
+  }
+  .logo {
+    min-width: 12%;
+    max-width: 12%;
+  }
 `;
 
 const MoviesList = ({
@@ -104,10 +174,17 @@ const MoviesList = ({
   addMovie,
   removeMovie,
   changeButtonText,
+  nominationList,
 }) => {
   const [loadingMovies, setLoadingMovies] = useState([1, 2, 3]);
+  const [isFull, setIsFull] = useState(false);
 
   const onButtonClick = (movie) => {
+    if (nominationList.length === 5) {
+      setIsFull(true);
+      return;
+    }
+
     if (movie.Type) {
       // someone wants to add a movie
       addMovie(movie);
@@ -117,6 +194,15 @@ const MoviesList = ({
 
     // change the button text/style if someone has tried to remove/add a movie
     changeButtonText(movie);
+
+    if (nominationList.length >= 4) {
+      setIsFull(true);
+      console.log("full");
+      return;
+    }
+
+    // set is full to false, if it makes it down here
+    setIsFull(false);
   };
 
   const filteredMovies = movieList.filter((cur) => cur.Poster !== "N/A");
@@ -150,9 +236,26 @@ const MoviesList = ({
 
   return (
     <StyledMoviesList>
-      <ul className="movie--list">
+      <ul className={`movie--list ${isFull ? "blur" : ""}`}>
         {isLoading ? renderedLoading : renderedMovies}
       </ul>
+      <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
+      <div className={`hidden ${isFull ? "centered" : ""}`}>
+        <div className="title">
+          <img className="logo" src={ShopifyLogo} />
+
+          <div className="h1">
+            <h1>theshoppies.</h1>
+          </div>
+        </div>
+        <h2 className="congrats">Congratulations!</h2>
+        <p>
+          Your list is now full. To make any necessary edits, please visit{" "}
+          <Link className="link" to="/mylist">
+            my list
+          </Link>
+        </p>
+      </div>
     </StyledMoviesList>
   );
 };
@@ -161,6 +264,7 @@ const mapStateToProps = (state) => {
   return {
     movieList: state.movieList,
     isLoading: state.isLoading,
+    nominationList: state.nominationList,
   };
 };
 
