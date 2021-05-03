@@ -23,6 +23,12 @@ Remove a nominee from the nomination list
  # Deployed Version
  
  Visit the site [Here](https://the-shoppies-ten.vercel.app/)
+ 
+ # What I did: 
+ 
+ I fulfilled all the main technical requirements. Some of the extra neat features I added was animation
+ to movies when loaded in, a loading animation, and utilized local storage to save a users movie
+ so it saves when they leave the site. 
 
 <br><br>
 <br><br>
