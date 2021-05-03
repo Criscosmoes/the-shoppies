@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import "../_myList.scss";
 
 import { removeMovie, changeButtonText } from "../actions";
 
-const StyledList = styled.div`
+/* const StyledList = styled.div`
   & {
     display: flex;
     justify-content: center;
@@ -111,7 +112,7 @@ const StyledList = styled.div`
     color: #95bf46;
     transition: 0.2s ease-in;
   }
-`;
+`; */
 
 const MyList = ({ nominationList, removeMovie, changeButtonText }) => {
   const onRemoveClick = (movie) => {
@@ -134,12 +135,12 @@ const MyList = ({ nominationList, removeMovie, changeButtonText }) => {
   });
 
   return (
-    <StyledList>
+    <div className="big--container">
       {renderedNominations.length >= 1 ? (
         <div className="main--container">
           <h1>Nominations.</h1>
 
-          <div className="nomiations">{renderedNominations}</div>
+          <ul className="nomiations">{renderedNominations}</ul>
         </div>
       ) : (
         <div className="error">
@@ -152,7 +153,7 @@ const MyList = ({ nominationList, removeMovie, changeButtonText }) => {
           </span>
         </div>
       )}
-    </StyledList>
+    </div>
   );
 };
 

@@ -32,17 +32,21 @@ const StyledNavBar = styled.div`
   .title {
     display: flex;
     color: white;
-    font-size: 6rem;
   }
 
   .title > * {
     margin: 1%;
   }
 
+  h1 {
+    font-size: 6rem;
+  }
+
   .h1 {
     display: flex;
     flex-direction: column-reverse;
     transition: 0.3s ease-out;
+    font-size: 1rem;
   }
 
   .h1:hover {

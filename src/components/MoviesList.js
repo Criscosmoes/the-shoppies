@@ -242,7 +242,7 @@ const MoviesList = ({
 
   return (
     <StyledMoviesList>
-      <ul className={`movie--list ${isFull ? "blur" : ""}`}>
+      <ul animation={"grow"} className={`movie--list ${isFull ? "blur" : ""}`}>
         {isLoading ? renderedLoading : renderedMovies}
       </ul>
       <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
