@@ -65,30 +65,36 @@ const StyledMoviesList = styled.div`
   img {
     min-width: 25%;
     max-width: 25%;
+    border-radius: 10px;
   }
 
   .information {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 25%;
+    width: 45%;
     height: 150px;
     color: white;
   }
 
   .placeholder {
-    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 10%;
+    height: 150px;
   }
 
   button {
     border-radius: 10px;
-    padding: 3%;
+    padding: 2%;
     color: white;
     background: #95bf46;
-    width: 80%;
+    width: 50%;
     font-family: "Orelega One", cursive;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     cursor: pointer;
     border: none;
     transition: 0.2s ease-out;
@@ -190,6 +196,24 @@ const StyledMoviesList = styled.div`
     background: #202020;
     font-size: 2.4rem;
   }
+
+  .imdb {
+    color: black;
+    background: rgb(230, 185, 30);
+    width: 30%;
+    padding: 1%;
+    font-weight: 900;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    transition: 0.2s ease-out;
+  }
+
+  .imdb:hover {
+    background: #edca1d;
+    transition: 0.2s ease-in;
+  }
 `;
 
 const MoviesList = ({
@@ -248,6 +272,13 @@ const MoviesList = ({
           >
             {cur.Type ? "Nominate" : "Remove"}
           </button>
+          <a
+            href={`https://www.imdb.com/title/${cur.imdbID}/`}
+            target="_blank"
+            className="imdb"
+          >
+            IMDb
+          </a>
         </div>
         <div className="placeholder"></div>
       </li>
@@ -262,7 +293,7 @@ const MoviesList = ({
     if (isLoading) {
       return renderedLoading;
     } else {
-      if (movieList.length > 1) {
+      if (movieList.length > 0) {
         return renderedMovies;
       } else {
         return <li className="error">No films found. Please search again!</li>;

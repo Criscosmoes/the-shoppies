@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const StyledNavBar = styled.div`
   & {
-    height: 22vh;
+    height: 21vh;
     margin-top: 0.5%;
     border-bottom: 0.1px solid #505257;
   }
