@@ -59,25 +59,27 @@ export default (state = initialState, action) => {
         isLoading: action.payload,
       };
     case "FETCH_MOVIES":
-      const half = Math.ceil(action.payload.length / 2);
-      const firstHalf = action.payload.splice(0, half);
+      if (action.payload) {
+        const half = Math.ceil(action.payload.length / 2);
+        var firstHalf = action.payload.splice(0, half);
 
-      const list = JSON.parse(localStorage.getItem("nominationList"));
+        const list = JSON.parse(localStorage.getItem("nominationList"));
 
-      // loop through and check if a movie has already been chosen,
-      // return that list instead
+        // loop through and check if a movie has already been chosen,
+        // return that list instead
 
-      for (let i = 0; i < list.length; i++) {
-        for (let j = 0; j < firstHalf.length; j++) {
-          if (list[i].imdbID === firstHalf[j].imdbID) {
-            firstHalf[j].Type = false;
+        for (let i = 0; i < list.length; i++) {
+          for (let j = 0; j < firstHalf.length; j++) {
+            if (list[i].imdbID === firstHalf[j].imdbID) {
+              firstHalf[j].Type = false;
+            }
           }
         }
       }
 
       return {
         ...state,
-        movieList: firstHalf,
+        movieList: firstHalf || [],
       };
     case "ON_INPUT_CHANGE":
       return {

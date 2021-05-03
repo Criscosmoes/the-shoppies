@@ -22,7 +22,7 @@ const StyledSearch = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    height: 40%;
+    height: 50%;
     width: 1px;
   }
 

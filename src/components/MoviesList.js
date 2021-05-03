@@ -172,6 +172,24 @@ const StyledMoviesList = styled.div`
     min-width: 12%;
     max-width: 12%;
   }
+
+  // error noti
+
+  .error {
+    margin: 3%;
+    text-align: center;
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 190px;
+    max-height: 190px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    border: 3px solid white;
+    align-items: center;
+    background: #202020;
+    font-size: 2.4rem;
+  }
 `;
 
 const MoviesList = ({
@@ -240,11 +258,21 @@ const MoviesList = ({
     return <LoadingMovie />;
   });
 
+  const showList = () => {
+    if (isLoading) {
+      return renderedLoading;
+    } else {
+      if (movieList.length > 1) {
+        return renderedMovies;
+      } else {
+        return <li className="error">No films found. Please search again!</li>;
+      }
+    }
+  };
+
   return (
     <StyledMoviesList>
-      <ul animation={"grow"} className={`movie--list ${isFull ? "blur" : ""}`}>
-        {isLoading ? renderedLoading : renderedMovies}
-      </ul>
+      <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
       <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
       <div className={`hidden ${isFull ? "centered" : ""}`}>
         <div className="title">
