@@ -17,6 +17,13 @@ export const fetchMovies = (input) => async (dispatch) => {
   }
 };
 
+export const localStorageList = (list) => {
+  return {
+    type: "NOMINATION_LIST",
+    payload: list,
+  };
+};
+
 export const addMovie = (movie) => {
   return {
     type: "ADD_NOMINATION",

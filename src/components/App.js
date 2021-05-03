@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 //helper functions
 
-import { fetchMovies } from "../actions";
+import { fetchMovies, localStorageList } from "../actions";
 
 // components
 
@@ -13,9 +13,22 @@ import NavBar from "./NavBar";
 import MiddleSection from "./MiddleSection";
 import MyList from "./MyList";
 
-const App = ({ fetchMovies }) => {
+const App = ({ fetchMovies, localStorageList }) => {
+  const checkLocal = () => {
+    if (localStorage.getItem("nominationList")) {
+      // change nomination list to memory
+      localStorageList(JSON.parse(localStorage.getItem("nominationList")));
+
+      // loop through and check if our current search
+    } else {
+      const nominationList = [];
+      localStorage.setItem("nominationList", JSON.stringify(nominationList));
+    }
+  };
+
   useEffect(() => {
     fetchMovies("avengers");
+    checkLocal();
   });
 
   return (
@@ -38,4 +51,4 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-export default connect(mapStateToProps, { fetchMovies })(App);
+export default connect(mapStateToProps, { fetchMovies, localStorageList })(App);

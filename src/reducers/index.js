@@ -7,6 +7,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case "NOMINATION_LIST":
+      return {
+        ...state,
+        nominationList: action.payload,
+      };
     case "CHANGE_TEXT":
       const newMovies = state.movieList.map((cur) => {
         if (action.payload.imdbID === cur.imdbID) {
@@ -19,8 +24,6 @@ export default (state = initialState, action) => {
         }
       });
 
-      console.log(newMovies);
-
       return {
         ...state,
         movieList: newMovies,
@@ -29,6 +32,8 @@ export default (state = initialState, action) => {
       const filteredFilms = state.nominationList.filter((cur) => {
         return action.payload.imdbID !== cur.imdbID;
       });
+
+      localStorage.setItem("nominationList", JSON.stringify(filteredFilms));
 
       return {
         ...state,
@@ -40,6 +45,10 @@ export default (state = initialState, action) => {
         userInput: "",
       };
     case "ADD_NOMINATION":
+      const arr = [...state.nominationList, action.payload];
+
+      localStorage.setItem("nominationList", JSON.stringify(arr));
+
       return {
         ...state,
         nominationList: [...state.nominationList, action.payload],
@@ -50,9 +59,25 @@ export default (state = initialState, action) => {
         isLoading: action.payload,
       };
     case "FETCH_MOVIES":
+      const half = Math.ceil(action.payload.length / 2);
+      const firstHalf = action.payload.splice(0, half);
+
+      const list = JSON.parse(localStorage.getItem("nominationList"));
+
+      // loop through and check if a movie has already been chosen,
+      // return that list instead
+
+      for (let i = 0; i < list.length; i++) {
+        for (let j = 0; j < firstHalf.length; j++) {
+          if (list[i].imdbID === firstHalf[j].imdbID) {
+            firstHalf[j].Type = false;
+          }
+        }
+      }
+
       return {
         ...state,
-        movieList: action.payload,
+        movieList: firstHalf,
       };
     case "ON_INPUT_CHANGE":
       return {

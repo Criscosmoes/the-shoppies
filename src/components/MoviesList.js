@@ -111,7 +111,7 @@ const StyledMoviesList = styled.div`
     z-index: 0;
     height: 100%;
     width: 100%;
-    backdrop-filter: blur(3.5px);
+    backdrop-filter: blur(4px);
   }
 
   // notification
@@ -151,6 +151,12 @@ const StyledMoviesList = styled.div`
   .link {
     color: white;
     text-decoration: underline;
+    transition: 0.2s ease-out;
+  }
+
+  .link:hover {
+    color: #95bf46;
+    transition: 0.2s ease-in;
   }
 
   .title {
