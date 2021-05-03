@@ -6,7 +6,7 @@ export const fetchMovies = (input) => async (dispatch) => {
 
     setTimeout(async () => {
       const response = await axios.get(
-        `http://www.omdbapi.com/?s=${input}&apikey=10532f9`
+        `https://www.omdbapi.com/?s=${input}&apikey=10532f9`
       );
 
       dispatch({ type: "FETCH_MOVIES", payload: response.data.Search });
