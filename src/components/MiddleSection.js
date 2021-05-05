@@ -25,7 +25,7 @@ const StyledMiddleSection = styled.div`
 const MiddleSection = () => {
   return (
     <StyledMiddleSection>
-      <MediaQuery maxWidth={400}>
+      <MediaQuery maxWidth={450}>
         <div className="phone">
           <Search />
           <MoviesList />

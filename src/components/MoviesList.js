@@ -217,7 +217,7 @@ const StyledMoviesList = styled.div`
     transition: 0.2s ease-in;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 450px) {
     & {
       width: 100%;
     }
@@ -233,8 +233,8 @@ const StyledMoviesList = styled.div`
     }
 
     img {
-      min-width: 28%;
-      max-width: 28%;
+      min-width: 27%;
+      max-width: 27%;
     }
 
     .information {
@@ -399,8 +399,10 @@ const MoviesList = ({
 
   return (
     <StyledMoviesList>
-      <MediaQuery minWidth={1200}>
-        <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
+      <MediaQuery maxWidth={450}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>
+          {showListPhone()}
+        </ul>
         <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
         <div className={`hidden ${isFull ? "centered" : ""}`}>
           <div className="title">
@@ -419,10 +421,8 @@ const MoviesList = ({
           </p>
         </div>
       </MediaQuery>
-      <MediaQuery maxWidth={450}>
-        <ul className={`movie--list ${isFull ? "blur" : ""}`}>
-          {showListPhone()}
-        </ul>
+      <MediaQuery minWidth={1200}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
         <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
         <div className={`hidden ${isFull ? "centered" : ""}`}>
           <div className="title">
