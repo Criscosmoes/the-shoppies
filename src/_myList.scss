@@ -135,13 +135,13 @@ $total-items: 5;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   h1 {
     font-size: 4rem;
   }
 
   img {
-    width: 39%;
+    width: 35%;
   }
 
   .information {
@@ -150,8 +150,9 @@ $total-items: 5;
   }
 
   .movie {
-    width: 100%;
+    width: 90%;
     font-size: 2rem;
+    margin: 5%;
   }
 
   .error {
