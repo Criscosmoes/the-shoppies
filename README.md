@@ -1,3 +1,44 @@
+## Description: 
+
+This project is part of the application process for UX Developer Intern & Web Developer Intern Challenge - Fall 2021, for Shopify. 
+
+## The Challenge
+
+We need a webpage that can search OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they should be notified they're finished.
+
+## The Basic Technical Requirements
+
+We'd like a simple to use interface that makes it easy to:
+Search OMDB and display the results (movies only)
+Add a movie from the search results to our nomination list
+View the list of films already nominated
+Remove a nominee from the nomination list
+
+## Also, extra features, choose only one or two
+
+ Save nomination lists if the user leaves the page
+ Animations for loading, adding/deleting movies, notifications
+ Create shareable links
+ 
+ # Deployed Version
+ 
+ Visit the site [Here](https://the-shoppies-ten.vercel.app/)
+ 
+ # What I did: 
+ 
+  I fulfilled all the main technical requirements. Some of the extra neat features I added was animation
+  to movies when loaded in, a loading animation, and utilized local storage to save a users movie
+  so it saves when they leave the site. 
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
