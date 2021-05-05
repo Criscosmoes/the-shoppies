@@ -79,7 +79,7 @@ const StyledSearch = styled.div`
 
   // media queries
 
-  @media (max-width: 400px) {
+  @media (max-width: 450px) {
     &:after {
       content: "";
       background: transparent;
@@ -95,7 +95,7 @@ const StyledSearch = styled.div`
     }
 
     h1 {
-      font-size: 7rem;
+      font-size: 6rem;
     }
 
     h2 {
@@ -125,7 +125,7 @@ const Search = ({ userInput, onInputChange, fetchMovies, resetInput }) => {
 
   return (
     <StyledSearch>
-      <MediaQuery maxWidth={400}>
+      <MediaQuery maxWidth={450}>
         <div className="title">
           <h1>
             Nominate<br></br> amazing films.
