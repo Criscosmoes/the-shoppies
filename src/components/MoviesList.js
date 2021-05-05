@@ -217,7 +217,7 @@ const StyledMoviesList = styled.div`
     transition: 0.2s ease-in;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 400px) {
     & {
       width: 100%;
     }

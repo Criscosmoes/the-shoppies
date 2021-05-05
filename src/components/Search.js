@@ -125,7 +125,7 @@ const Search = ({ userInput, onInputChange, fetchMovies, resetInput }) => {
 
   return (
     <StyledSearch>
-      <MediaQuery maxWidth={450}>
+      <MediaQuery maxWidth={400}>
         <div className="title">
           <h1>
             Nominate<br></br> amazing films.

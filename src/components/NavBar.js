@@ -106,7 +106,7 @@ const StyledNavBar = styled.div`
 const NavBar = () => {
   return (
     <StyledNavBar>
-      <MediaQuery maxWidth={450}>
+      <MediaQuery maxWidth={400}>
         <nav>
           <div className="title--phone">
             <img src={ShopifyLogo} />
