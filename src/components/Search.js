@@ -91,7 +91,7 @@ const StyledSearch = styled.div`
     }
 
     .title > * {
-      margin: 3% 0%;
+      margin: 3% 1%;
     }
 
     h1 {

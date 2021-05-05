@@ -399,10 +399,8 @@ const MoviesList = ({
 
   return (
     <StyledMoviesList>
-      <MediaQuery maxWidth={400}>
-        <ul className={`movie--list ${isFull ? "blur" : ""}`}>
-          {showListPhone()}
-        </ul>
+      <MediaQuery minWidth={1200}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
         <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
         <div className={`hidden ${isFull ? "centered" : ""}`}>
           <div className="title">
@@ -421,8 +419,10 @@ const MoviesList = ({
           </p>
         </div>
       </MediaQuery>
-      <MediaQuery minWidth={1000}>
-        <ul className={`movie--list ${isFull ? "blur" : ""}`}>{showList()}</ul>
+      <MediaQuery maxWidth={400}>
+        <ul className={`movie--list ${isFull ? "blur" : ""}`}>
+          {showListPhone()}
+        </ul>
         <div className={`hidden ${isFull ? "backdrop" : ""}`}></div>
         <div className={`hidden ${isFull ? "centered" : ""}`}>
           <div className="title">
