@@ -13,7 +13,7 @@ const StyledLoadingMovie = styled.div`
     margin: 3%;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 450px) {
     width: 100%;
     height: 140px;
   }

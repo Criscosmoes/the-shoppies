@@ -270,6 +270,33 @@ const StyledMoviesList = styled.div`
     ul::-webkit-scrollbar {
       width: 0rem;
     }
+
+    .centered {
+      width: 90%;
+    }
+
+    .centered > * {
+      margin: 1%;
+    }
+
+    .backdrop {
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 0;
+      height: 240vh;
+      width: 100%;
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .congrats {
+      font-size: 4rem;
+    }
   }
 `;
 
