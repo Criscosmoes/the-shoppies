@@ -129,7 +129,7 @@ const MyList = ({ nominationList, removeMovie, changeButtonText }) => {
           <h3>Release: {cur.Year}</h3>
           <button onClick={() => onRemoveClick(cur)}>Remove</button>
         </div>
-        <div className="placeholder"></div>
+        {/* <div className="placeholder"></div> */}
       </li>
     );
   });

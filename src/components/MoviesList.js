@@ -222,6 +222,10 @@ const StyledMoviesList = styled.div`
       width: 100%;
     }
 
+    .movie--list {
+      width: 100%;
+    }
+
     .movie {
       min-height: 150px;
       max-height: 150px;
@@ -229,27 +233,38 @@ const StyledMoviesList = styled.div`
     }
 
     img {
-      min-width: 30%;
-      max-width: 30%;
+      min-width: 28%;
+      max-width: 28%;
     }
 
     .information {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
       font-size: 1.8rem;
-      width: 32%;
+      width: 35%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: column;
+      width: 35%;
+      height: 100px;
     }
 
     button {
       font-size: 1.5rem;
-      padding: 2%;
-      width: 100%;
+      padding: 5%;
+      width: 90%;
+      border-radius: 5px;
     }
 
-    a {
-      font-size: 1.2rem;
-      padding: 2%;
+    .imdb {
+      font-size: 1.5rem;
+      padding: 4%;
+      width: 70%;
     }
 
     ul::-webkit-scrollbar {
@@ -340,7 +355,7 @@ const MoviesList = ({
             className={`${cur.Type ? "" : "remove"}`}
             onClick={() => onButtonClick(cur)}
           >
-            {cur.Type ? "Nominate" : "Remove"}
+            {cur.Type ? "Nominate" : `Remove ${"  "}`}
           </button>
           <a
             href={`https://www.imdb.com/title/${cur.imdbID}/`}

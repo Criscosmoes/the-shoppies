@@ -140,8 +140,21 @@ $total-items: 5;
     font-size: 4rem;
   }
 
+  img {
+    width: 39%;
+  }
+
+  .information {
+    width: 40%;
+    height: 15rem;
+  }
+
   .movie {
     width: 100%;
     font-size: 2rem;
+  }
+
+  .error {
+    font-size: 6rem;
   }
 }

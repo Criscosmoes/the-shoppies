@@ -30,7 +30,6 @@ const StyledSearch = styled.div`
     justify-content: space-evenly;
     flex-direction: column;
     width: 100%;
-    margin: 0% 2%;
   }
 
   h1 {
@@ -104,7 +103,7 @@ const StyledSearch = styled.div`
     }
 
     input {
-      width: 100%;
+      width: 85%;
     }
 
     button {

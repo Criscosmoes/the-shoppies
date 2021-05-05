@@ -13,6 +13,11 @@ const StyledLoadingMovie = styled.div`
     margin: 3%;
   }
 
+  @media (max-width: 400px) {
+    width: 100%;
+    height: 140px;
+  }
+
   @keyframes change {
     0% {
       background-position: 0 50%;
