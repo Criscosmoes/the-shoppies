@@ -419,7 +419,7 @@ const MoviesList = ({
           </p>
         </div>
       </MediaQuery>
-      <MediaQuery maxWidth={400}>
+      <MediaQuery maxWidth={450}>
         <ul className={`movie--list ${isFull ? "blur" : ""}`}>
           {showListPhone()}
         </ul>
